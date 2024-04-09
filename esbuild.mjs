@@ -30,19 +30,20 @@ const optimizeJpeg = (dir) => ({
 })
 
 await esbuild.build({
-  entryPoints: ['./styles/style.less', './styles/vendor.css'],
+  entryPoints: ['./styles/style.less', './styles/vendor.css', './js/app.js'],
   loader: { '.woff2': 'copy', '.woff': 'copy' },
   external: ['*.ttf'],
   bundle: true,
   minify: true,
   outdir: '_site',
   plugins: [
+    manifestPlugin({shortNames: 'input'}),
     lessLoader(),
     optimizeJpeg('assets'),
     compressor({
       fileTypes: ['js', 'css'],
       compressType: 'brotli',
+
     }),
-    manifestPlugin({shortNames: 'input'}),
   ],
 })

@@ -1,14 +1,13 @@
 ---
 title: "JavaScript |> Elixir: Programming beyond the comfort zone"
-permalink: "/{{ page.fileSlug }}.html"
+tags: post
+layout: post.liquid
 date: "2017-02-09"
 image: /assets/water.jpg
 image_position: "bottom"
 intro: "I’m a JavaScript Engineer. I write JavaScript. I really like writing JavaScript and I feel very comfortable doing so. In the JavaScript world, there are a gazillion web frameworks available and every week there are more coming. So why should you start programming in another language?"
 categories: ["elixir", "javascript"]
 authors: ["Erik"]
-tags: post
-layout: layout.liquid
 ---
 
 I'm a JavaScript Engineer.

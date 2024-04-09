@@ -1,6 +1,8 @@
 const fs = require("node:fs");
 const path = require("node:path");
 const fm = require('front-matter')
+const markdownIt = require("markdown-it");
+const markdownItAttrs = require("markdown-it-attrs");
 
 const webpackAsset = name => {
   const manifestData = fs.readFileSync(
@@ -22,7 +24,14 @@ const getTopics = () => {
 }
   
 module.exports = eleventyConfig => {
+  const markdownLib = markdownIt({
+    html: true,
+    breaks: true,
+    linkify: true,
+  }).use(markdownItAttrs)
+    
+  eleventyConfig.setLibrary("md", markdownLib);
   eleventyConfig.addLiquidShortcode("static", webpackAsset);
   eleventyConfig.addGlobalData("topics", getTopics);
-  eleventyConfig.addLiquidShortcode('log', text => console.log(text));
+  eleventyConfig.addLiquidShortcode('logf', text => console.log(text));
 };

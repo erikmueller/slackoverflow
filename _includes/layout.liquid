@@ -5,16 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    
     <title>{{ title }}</title>
     <meta name="author" content="Erik" />
     <meta name="description" content="{{ meta_description }}" />
     <link rel="canonical" href="https://slackoverflow.me{{ canonical }}" />
-
-    <!-- <%=
-      render_existing(@view_module, "meta." <> @view_template, assigns) ||
-      render(JellyShot.LayoutView, "meta.html", assigns)
-    %> -->
 
     <link rel="preload" href="{% static "vendor.css" %}" as="style" onload="this.rel='stylesheet'">
     <link rel="stylesheet" href="{% static 'style.css' %}">
@@ -35,7 +29,7 @@
       }
     </style>
 
-    {% comment %} <script defer src="/js/bundle.js"></script> {% endcomment %}
+    <script defer src="{% static "app.js" %}"></script>
   </head>
 
   <body>
@@ -74,11 +68,11 @@
         </li>
         <li class="nav-list-item nav-list-item-footer">
           <i class="fab fa-angellist"></i>
-          <a href="/pages/cv">CV</a>
+          <a href="/cv.html">CV</a>
         </li>
         <li class="nav-list-item nav-list-item-footer">
           <i class="fas fa-gavel"></i>
-          <a href="/pages/legal">Legal notice</a>
+          <a href="/legal.html">Legal notice</a>
         </li>
       </ul>
     </div>
