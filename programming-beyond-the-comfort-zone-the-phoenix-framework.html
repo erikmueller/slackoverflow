@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>The Phoenix Framework: Programming beyond the comfort zone</title>
+    <meta name="author" content="Erik M&uuml;ller" />
+    <meta name="description" content="In the last post we checked why you should learn some more languages and why Elixir might help you becoming a better JavaScript developer. Now I promised to go deeper into web development. A popular (if not the most popular) web framework for Elixir is Phoenix." />
+
+    <link rel="canonical" href="https://slackoverflow.me/programming-beyond-the-comfort-zone-the-phoenix-framework.html" />
+    <link rel="preload" href="styles/vendor-QUGRL6DO.css" as="style" onload="this.rel='stylesheet'">
+    <link rel="stylesheet" href="styles/style-37KZLEAA.css">
+
+    <style>
+      /* critical desktop overwrites */
+      @media (min-width: 920px) {
+        .nav-list-item { display: block; line-height: 1.5em; }
+        .nav-list-item:before { content: none !important; }
+        .nav-list-item-footer a { color: gray; }
+        .blog-avatar { float: none; margin: 0 0 1em 0; }
+        .blog-avatar img { height: 180px; border-radius: 50px 0 0 50px; }
+        .content { margin-left: 15em; }
+        .content-sheet { padding: 3em; max-width: 1024px; }
+        .header { margin: 12em 1em 0; text-align: right; }
+        .sidebar { position: fixed; top: 0; bottom: 0; width: 212px; }
+        .footer { background: none; text-align: left; margin-left: 12em; padding-left: 5em; }
+      }
+    </style>
+
+    <script defer src="js/app-TVMZUGOC.js"></script>
+  </head>
+
+  <body>
+    <div class="sidebar">
+      <div class="header">
+        <div class="blog-avatar">
+          <img src="/assets/me.jpg" alt="Erik M&uuml;ller"/>
+        </div>
+
+        <a href="/">
+          <h2 class="blog-title">slack</h2>
+          <h3 class="blog-tagline">overflow</h3>
+        </a>
+
+        <nav>
+          <ul class="nav-list">
+            
+              <li class="nav-list-item nav-list-item-category">
+                <a href="/?topic=javascript">javascript</a>
+              </li>
+            
+              <li class="nav-list-item nav-list-item-category">
+                <a href="/?topic=elixir">elixir</a>
+              </li>
+            
+          </ul>
+        </nav>
+      </div>
+    </div>
+
+    <div class="content">
+  <div class="content-sheet">
+    <div class="post-header-image-container" style="background: url('/assets/fire.jpg') center"></div>
+    <h1>The Phoenix Framework: Programming beyond the comfort zone</h1>
+    <article>
+      <p>In the <a href="https://developer.epages.com/blog/2017/02/02/programming-beyond-the-comfort-zone-javascript-elixir.html">last post</a> we checked why you should learn some more languages and why Elixir might help you becoming a better JavaScript developer.
+Now I promised to go deeper into web development (since this is what JS devs do, right?).
+A popular (if not the most popular) web framework for Elixir is <a href="http://www.phoenixframework.org/"><strong>Phoenix</strong></a>.
+After a short overview and a look at it's core concepts we're going to build a (very) small REST API just to check how to start and how this start looks like.
+I'm sure you'll find hundreds of more sophisticated tutorials out there on the internet if you want to go further.</p>
+<h2>Overview</h2>
+<p>Started by Chris McCord, the <a href="http://www.phoenixframework.org/">Phoenix Framework</a> released version <a href="https://github.com/phoenixframework/phoenix/releases/tag/v1.0.0">1.0</a> in August 2015.
+This was one and a half year after the famous <em><a href="https://github.com/phoenixframework/phoenix/commit/c4ede8c5f71ab74b0c2e9de1eb37d15531d95a46">initial commit</a></em>.
+Now it's not only used for dynamic websites and applications but especially advertised for real-time WebSocket-based interaction (e.g. chats, games, etc).</p>
+<p>Phoenix is heavily relying on three (Elixir and/or Erlang) projects:</p>
+<ol>
+<li>The HTTP server <a href="https://github.com/ninenines/cowboy">Cowboy</a></li>
+<li><a href="https://github.com/elixir-lang/plug">Plug</a> - a specification for composable modules used in web application</li>
+<li>The database wrapper <a href="https://github.com/elixir-ecto/ecto">Ecto</a> which also provides a DSL for querying.</li>
+</ol>
+<p>Since Phoenix is built in a very modular way you can add and remove pretty much any functionality you need.
+Writing a REST API that only provides JSON data?
+Simply remove the template logic and the complete frontend asset pipeline!
+This gives you a project structure that fits your needs and doesn't bloat your application.</p>
+<h2>What makes the bird fly</h2>
+<p>So now that we know what big pieces are used to compose the framework let's see how Phoenix comes from an incoming request to an outgoing response.
+The most important thing to notice is that within the framework (and it's layers) you will always see a <em>connection</em> or <code>conn</code> being passed around and altered.
+Of course you do not alter the <em>original</em> connection but rather use it to construct a new one.
+Remember, we have immutable data!</p>
+<p>To give you a more visual impression of the flow I'd like to borrow some thoughts from the excellent <a href="https://pragprog.com/book/phoenix/programming-phoenix">&quot;Programming Phoenix&quot;</a> book.
+As mentioned we start with the <code>connection</code>.
+In case you forgot, the pipeline operator <code>|&gt;</code> takes the left-hand side and passes it as the first argument to the function on the right.</p>
+<pre><code class="language-elixir">Connection
+|&gt; Endpoint
+|&gt; Router
+|&gt; Controller
+</code></pre>
+<p>First we hit the <strong>Endpoint</strong>.
+This is the place where, in the Express world, you define your <code>app()</code> and <code>use()</code> different kinds of middleware layers.
+In Phoenix these layers are specified by different <strong>Plugs</strong>.
+A plug can be anything from a logger to different header definitions or session handling.
+Right after the endpoint (entrypoint) comes the <strong>Router</strong>.
+Pretty much what you would expect: A layer that knows which request should go where - precisely to which <strong>Controller</strong>.
+The router can specify <strong>Pipelines</strong> which are usually a series of plugs a request should run through on a specific route.
+Think of such a <em>pipeline</em> as a stack of middleware with a distinct mount point.
+This mechanism e.g. lets you set a JSON accept header for all your <code>/api/*</code> routes while all view related requests go through some sort of XSRF protection.</p>
+<p>Once our request arrived in the controller we might want to do a call to the database using <strong>Ecto</strong> and pass that data to a <strong>Template</strong> to render it.
+Stay with me we're almost there.
+The last piece missing is the <strong>View</strong>.
+Ever needed some logic in your templates?
+Just define everything you need in your corresponding <em>view</em> and you can access all functions in your <code>.eex</code> template (which stands for embedded elixir and sounds scarier than it is).
+We're done.
+We just rendered a template with data from our database model.
+Incidentally, the model is responsible for defining the database scheme and processing data written to the database (by the controller) and retrieved from the database (also issued by the controller).
+You could say that the model is the only one &quot;allowed&quot; to produce side effects and interact with the &quot;outside&quot; world (in our case the database).</p>
+<h2>Foreplay</h2>
+<p>This was a rough overview of the inner workings of Phoenix.
+I bet you'd like to see that in action and have a look how we could use this to create an actual real world application.
+What would be better than writing a REST API that you can use as a backend for your JavaScript frontend?
+Awesome!
+There are a couple of things we'll need and since I'm a lazy developer I assume you're running Mac OS.
+If not please see the <a href="http://elixir-lang.org/install.html">official Elixir site</a> to get started.</p>
+<h3>TL;DR</h3>
+<pre><code class="language-sh">$ brew update &amp;&amp; \
+  brew install elixir &amp;&amp; \
+  mix local.hex &amp;&amp; \
+  mix archive.install https://github.com/phoenixframework/archives/raw/master/phoenix_new.ez &amp;&amp; \
+  docker run -d -p 5432:5432 postgres &amp;&amp; \
+  mix phoenix.new rest-api --no-html --no-brunch &amp;&amp; \
+  cd restapi
+</code></pre>
+<h3>The slightly longer version</h3>
+<p>For Mac OS just get <a href="http://brew.sh/index_de.html">brew</a> and do a</p>
+<pre><code class="language-sh">$ brew update &amp;&amp; brew install elixir
+</code></pre>
+<p>which should install both Erlang and Elixir.
+If everything went well you can fire up <code>iex</code> (Interactive Elixir) in the terminal of your choice and let it print something useful with</p>
+<pre><code class="language-sh">iex(1)&gt; h Map
+</code></pre>
+<p>Awesome, we have an interactive shell with integrated documentation 👌.
+We have the VM, we have the compiler.
+We need some sort of package manager!
+Oh, did I mention <code>mix</code>?
+It's a tool for running tasks like scaffolding, installing dependencies, executing tests, and of course for creating cocktails.
+Basically, it's <code>npm</code> on steroids.
+And it can get us our package manager:</p>
+<pre><code class="language-sh">$ mix local.hex
+</code></pre>
+<p>Once we have <code>hex</code>, we can get the latest phoenix archive (because we need hex for installing phoenix' dependencies)</p>
+<pre><code class="language-sh">$ mix archive.install https://github.com/phoenixframework/archives/raw/master/phoenix_new.ez
+</code></pre>
+<p>As we're going to build a tiny REST API we don't need any sort of assets like images, CSS, or JavaScript.
+I'm telling you that because Phoenix usually uses <strong>brunch</strong> to compile these statics (which would require <code>nodejs</code>).
+The only other thing we do need is a database.
+The default database Ecto uses is PostgreSQL but you could also opt for MySQL if you like that better.
+If you have <a href="https://www.docker.com/">Docker</a> installed, a simple</p>
+<pre><code class="language-sh">$ docker run -p 5432:5432 postgres
+</code></pre>
+<p>will download the image and run your database container on <code>127.0.0.1:5432</code> with the user <code>postgres</code> and no password.
+We're set.
+Run</p>
+<pre><code class="language-sh">$ mix phoenix.new rest-api --no-html --no-brunch
+</code></pre>
+<p>and agree to install dependencies.
+You'll see a couple of files being created.
+As well as instructions on how to start the server and how to configure/initialize your database.</p>
+<h2>REST API action ahead</h2>
+<p>Let's be brave and run a one liner</p>
+<pre><code class="language-sh">$ mix ecto.create &amp;&amp; mix phoenix.server
+</code></pre>
+<p>This will create a new database for development (Phoenix automatically creates suffixed databases for <code>_dev</code>, <code>_test</code> and <code>_prod</code> depending on the environment) and start the server on port 4000.
+When opening your browser of choice the first thing you should see when navigating to <code>https://localhost:4000</code> is an error message.
+Bummer.
+Hey, at least it's a beautiful one and it tells you what exactly went wrong.
+Remember we told <code>mix</code> not to create any html files or bundle static assets?
+With that it also did not create any views (except for the error view) or their related routes (e.g. <code>/</code>) in the router.
+The only scope (and pipeline) we have is <code>/api</code> (which is exactly what we wanted).</p>
+<p>Let's add a new controller that will serve some <code>shops</code> once a request is routed to it.
+You could do this by hand or by <code>mix</code>, your choice.
+The task for generating resources expects you to provide a singular and a plural name as well as some (optional) fields:</p>
+<pre><code class="language-bash">$ mix phoenix.gen.json Shop shops name:string
+</code></pre>
+<p>Handy, <code>mix</code> not only tells us how to create a route to access this controller it also creates the model including a database migration, a view and tests for all of them (I'm sure now you're glad you <code>mix</code>ed it).
+We'll do exactly what <code>mix</code> suggests and copy the line into our <code>web/router.ex</code> (and run <code>mix ecto.migrate</code> to update the database).
+To check which routes the aforementioned line creates just run <code>mix phoenix.routes</code>.
+We only want to retrieve a particular shop for this example so we (literally) tell Phoenix: <code>only: [:show]</code> instead of <code>except: [:new, :edit]</code>.
+When we run <code>mix phoenix.routes</code> again we should see only one route left.
+In this case we could have specified the one route ourselves:</p>
+<pre><code class="language-elixir">get &quot;/shops/:name&quot;, ShopController, :show
+</code></pre>
+<p>And we will exactly use that line instead of the resource.
+First of all it's more explicit and second of all we want the parameter to be <code>name</code> anyway (we could also specify this when using a resource but it's simpler this way).
+The <code>:show</code> atom specifies the controller function to call when this route is accessed.
+So let's access <code>http://localhost/api/shops/foo</code> and see what happens.</p>
+<p>Hooray, the <code>NoRouteError</code> is gone, only to give us another one.
+Ecto still tries to find our shop in the database by id.
+Open the <code>web/controllers/shop_controller.ex</code> and check the <code>show</code> function.
+It expects to get our connection and extracts the <code>id</code> from the passed parameters.
+Lets extract the <code>name</code> instead and tell it to look for it by name since <code>Repo.get/3</code> tries to find a match by primary key.</p>
+<pre><code class="language-elixir">def show(conn, %{&quot;name&quot; =&gt; name}) do
+    shop = Repo.get_by(Shop, name: name)
+    render(conn, &quot;show.json&quot;, shop: shop)
+end
+</code></pre>
+<p>You should see something like</p>
+<pre><code class="language-js">{
+&quot;data&quot;: null
+}
+</code></pre>
+<p>In case you get an error make sure you ran <code>mix ecto.migrate</code> to have Ecto create the <code>shops</code> table.
+Of course, there's no shop with the name &quot;foo&quot; in our database.
+Let's fix that.
+Open <code>priv/repo/seeds.exs</code> and enter the following:</p>
+<pre><code class="language-elixir">alias Restapi.Repo
+alias Restapi.Shop
+
+Repo.insert! %Shop{name: &quot;foo&quot;}
+</code></pre>
+<p>The two alias statements let us use <code>Repo</code> and <code>Shop</code> without prefixing <code>Restapi</code>.
+Then we simply insert one record (Shop) with the name &quot;foo&quot;. Run</p>
+<pre><code class="language-sh">$ mix run priv/repo/seeds.exs
+</code></pre>
+<p>to insert the shop.
+Accessing <code>http://localhost/api/shops/foo</code> again should yield the expected result now.</p>
+<p>There's a lot to explore from here on and there's (of course) a lot missing in our little example.</p>
+<ul>
+<li>Check <code>web/views/shop_view.ex</code> to see which fields fetched from the database and passed by the controller are actually used to render the view (<code>updated_at</code> and <code>inserted_at</code> are fetched but don't appear in the response, right?)</li>
+<li>Add some more records in the <code>seeds.exs</code> and <code>GET</code> them</li>
+<li>Add a route to list all available shops</li>
+<li>Create an HTML application instead of a REST API</li>
+<li>...</li>
+</ul>
+<p>This being probably the smallest and least comprehensive tutorial ever, I encourage you to check the awesome <a href="http://www.phoenixframework.org/docs/overview">Phoenix Guides</a> which will teach you about everything covered here, and more, in much more depth.
+I hope these posts made you curious and showed you some things beyond the JavaScript world.
+<a href="https://twitter.com/epagesdevs?lang=de">Let me know</a> what you think.</p>
+<p>Thanks for reading.</p>
+
+    </article>
+  </div>
+</div>
+
+    <div class="footer">
+      <ul class="nav-list">
+        <li class="nav-list-item nav-list-item-footer">
+          <i class="fab fa-twitter-square"></i>
+          <a target="blank" href="http://twitter.com/air2ick/">Twitter</a>
+        </li>
+        <li class="nav-list-item nav-list-item-footer">
+          <i class="fab fa-github-square"></i>
+          <a target="blank" href="http://github.com/erikmueller/">GitHub</a>
+        </li>
+        <li class="nav-list-item nav-list-item-footer">
+          <i class="fab fa-angellist"></i>
+          <a href="/cv.html">CV</a>
+        </li>
+        <li class="nav-list-item nav-list-item-footer">
+          <i class="fas fa-gavel"></i>
+          <a href="/legal.html">Legal notice</a>
+        </li>
+      </ul>
+    </div>
+
+    <script>
+      // Firefox doesn't seem to support the `onload` event on `link`
+      document.querySelector('head').insertAdjacentHTML('beforeend', '<link rel="stylesheet" href="styles/vendor-QUGRL6DO.css">')
+    </script>
+  </body>
+</html>

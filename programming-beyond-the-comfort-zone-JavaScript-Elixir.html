@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>JavaScript |> Elixir: Programming beyond the comfort zone</title>
+    <meta name="author" content="Erik M&uuml;ller" />
+    <meta name="description" content="I’m a JavaScript Engineer. I write JavaScript. I really like writing JavaScript and I feel very comfortable doing so. In the JavaScript world, there are a gazillion web frameworks available and every week there are more coming. So why should you start programming in another language?" />
+
+    <link rel="canonical" href="https://slackoverflow.me/programming-beyond-the-comfort-zone-JavaScript-Elixir.html" />
+    <link rel="preload" href="styles/vendor-QUGRL6DO.css" as="style" onload="this.rel='stylesheet'">
+    <link rel="stylesheet" href="styles/style-37KZLEAA.css">
+
+    <style>
+      /* critical desktop overwrites */
+      @media (min-width: 920px) {
+        .nav-list-item { display: block; line-height: 1.5em; }
+        .nav-list-item:before { content: none !important; }
+        .nav-list-item-footer a { color: gray; }
+        .blog-avatar { float: none; margin: 0 0 1em 0; }
+        .blog-avatar img { height: 180px; border-radius: 50px 0 0 50px; }
+        .content { margin-left: 15em; }
+        .content-sheet { padding: 3em; max-width: 1024px; }
+        .header { margin: 12em 1em 0; text-align: right; }
+        .sidebar { position: fixed; top: 0; bottom: 0; width: 212px; }
+        .footer { background: none; text-align: left; margin-left: 12em; padding-left: 5em; }
+      }
+    </style>
+
+    <script defer src="js/app-TVMZUGOC.js"></script>
+  </head>
+
+  <body>
+    <div class="sidebar">
+      <div class="header">
+        <div class="blog-avatar">
+          <img src="/assets/me.jpg" alt="Erik M&uuml;ller"/>
+        </div>
+
+        <a href="/">
+          <h2 class="blog-title">slack</h2>
+          <h3 class="blog-tagline">overflow</h3>
+        </a>
+
+        <nav>
+          <ul class="nav-list">
+            
+              <li class="nav-list-item nav-list-item-category">
+                <a href="/?topic=javascript">javascript</a>
+              </li>
+            
+              <li class="nav-list-item nav-list-item-category">
+                <a href="/?topic=elixir">elixir</a>
+              </li>
+            
+          </ul>
+        </nav>
+      </div>
+    </div>
+
+    <div class="content">
+  <div class="content-sheet">
+    <div class="post-header-image-container" style="background: url('/assets/water.jpg') bottom"></div>
+    <h1>JavaScript |> Elixir: Programming beyond the comfort zone</h1>
+    <article>
+      <p>I'm a JavaScript Engineer.
+I write JavaScript.
+I really like writing JavaScript and I feel very comfortable doing so.
+In the JavaScript world, there are a gazillion web frameworks available and every week there are more coming.
+Besides the usual suspects like <code>express</code> and <code>hapi</code>, there are a lot of things that are fun to play with like zeit's <code>micro</code>.
+Although having some different concepts, they all have something in common: They're (of course) JavaScript frameworks.
+Now, if you want to learn more about the HTTP stack or the request and response cycle, you should definitely check out a lot of different frameworks since different concepts give you different insights and perspectives of the inner workings.</p>
+<p>So why should you start programming in another language?</p>
+<p>Let's take a step back from the frameworks and look at the language itself.
+JavaScript claims to be both, object-oriented (with prototypal inheritance) and functional.
+And since it claims to be both, it is neither one nor the other to a satisfying extend.
+Other languages like <a href="http://elixir-lang.org/" target="blank">Elixir</a> (which we're going to talk about in a bit) make it much easier to use functional language features and methods such as <em>destructuring</em>, <em>pattern matching</em> or <em>recursion</em>.
+You might shift from doing everything with a <code>forEach</code> loop to solving pretty much every problem with <code>reduce</code>.
+This paradigm shift not only broadens your programming knowledge, but lets you view problems (and more importantly their solutions) from a different angle.
+On top of that, it improves code readability - at least most of the time 😉.</p>
+<p>Now, what if I told you that you can learn all of this by using a web framework (and language) that is not only fun to work with but also faster and less error prone than all of the before mentioned?</p>
+<h2>Enter: Elixir and Phoenix</h2>
+<p>This is rather a teaser that should make you curious about trying out something new and leaving your comfort zone, than a full blown tutorial or language reference.
+This first part will take a look at how <strong>Elixir</strong> might help you to rethink programming patterns leading to cleaner code and continue with what this <a href="http://www.phoenixframework.org/" target="blank"><strong>Phoenix</strong></a> thing actually is.</p>
+<h3>The Platform</h3>
+<p>Before we explore some Elixir code, let's start with a naive JS example of populating an array - mutation style.</p>
+<pre><code class="language-js">const myNumbers = [-2, 3, 5, -34, 0, 32]
+const result = []
+
+myNumbers.forEach(num =&gt; {
+  if (num &gt; 0) {
+    result.push(num * 2)
+  }
+})
+</code></pre>
+<p>So what do we have here? Side effects and mutation! With each iteration we're changing the <code>result</code> array. In this simple case we're pretty sure that we know what it contains after we touched each number. With higher complexity (and nesting) we might be guessing the values rather than knowing them. Furthermore it's not quite obvious at first sight how <code>result</code> is populated (because there's no assignment we can see right away).</p>
+<p>Of course we can do better:</p>
+<pre><code class="language-js">const myNumbers = [-2, 3, 5, -34, 0, 32]
+const result = myNumbers.filter(num =&gt; num &gt; 0).map(num =&gt; num * 2)
+</code></pre>
+<p>This time we see that <code>result</code> will contain the double of all positive numbers from the source array.
+Way more explicit, isn't it?
+For the record, this is how the above would look in Elixir:</p>
+<pre><code class="language-elixir">my_numbers = [-2, 3, 5, -34, 0, 32]
+result = my_numbers
+    |&gt; Enum.filter(fn (num) -&gt; num &gt; 0 end)
+    |&gt; Enum.map(&amp;(&amp;1 * 2))
+</code></pre>
+<p>This pretty much resembles the JavaScript solution, right?!
+Almost!
+Since Elixir is based on immutable data, you could not have started as shown in the first JavaScript solution.
+You cannot simply mutate a data structure in Elixir!
+What you would have done is to create a new list with every value from the old one that you see fit.
+Besides that, there are some other oddities.
+The <code>|&gt;</code> is called a pipe operator and passes the value as the first argument to the next function.
+While we're using the <code>fn</code> keyword to define an anonymous function as the <code>filter</code> expression and explicitly naming the variable <code>num</code>, we're shortening this for the <code>map</code> function and just say: &quot;<em>This function uses the first argument (<code>&amp;1</code>) it receives and doubles it</em>&quot;.</p>
+<p>Let's take the example from above again.
+In contrast to JavaScript, we can use some sugar in Elixir called a <code>for</code> comprehension in conjunction with a filter to loop over the enumerable and create a new one (with all values &gt; 0 doubled).</p>
+<pre><code class="language-elixir">my_numbers = [-2, 3, 5, -34, 0, 32]
+result = for n &lt;- my_numbers, n &gt; 0, do: n * 2
+</code></pre>
+<p>Note that the last statement of every Elixir function is automatically returned creating a new list bound to <code>result</code>.
+What actually looks like an assignment <code>=</code> is actually a <code>match</code>.
+Trying to match <code>result = 4</code> afterwards will give you an error, since the compiler tries to match <code>[6, 10, 64] = 4</code>.
+This might look strange at first, yet makes more sense once you grasp concepts like pattern matching or destructuring.</p>
+<p>After looking at the above described language features, I cannot circumvent a few basic facts.
+Elixir runs on the <a href="https://www.erlang.org/" target="blank">Erlang</a> VM (BEAM) and gives you the great ecosystem companies like <em>Heroku</em> and <em>WhatsApp</em> use to build their products.
+It kind of relates to Erlang like Scala relates to Java (JVM).
+Likewise, you can import Erlang modules and use them right away.
+Elixir's syntax is concise and reminds of the Ruby programming language due to the fact that the creator <a href="https://github.com/josevalim" target="blank">José Valim</a> is a very active member of the ruby community.</p>
+<p>Ok, let's see some more Elixir code and compare it to JavaScript ES6.</p>
+<p>Elixir</p>
+<pre><code class="language-elixir"># Printing the sum of a list
+Enum.reduce([1, 2, 3, 5, 8], fn(item, acc) -&gt; acc + item end) |&gt; IO.puts
+
+# or without explicitly naming the parameters
+Enum.reduce([1, 2, 3, 5, 8], &amp;(&amp;1 + &amp;2)) |&gt; IO.puts
+</code></pre>
+<p>JS</p>
+<pre><code class="language-js">// Printing the sum of an array
+console.log([1, 2, 3, 5, 8].reduce((acc, item) =&gt; acc + item))
+</code></pre>
+<p>Elixir</p>
+<pre><code class="language-elixir"># And we all love fibonacci right?
+defmodule Fibonacci do
+    def calc (n) when n &lt; 2, do: 1
+    def calc (n), do: calc(n - 2) + calc(n - 1)
+end
+</code></pre>
+<p>JS</p>
+<pre><code class="language-js">// We all do love fibonacci!
+function fibonacci(n) {
+  if (n &lt; 2) return 1
+
+  return fibonacci(n - 2) + fibonacci(n - 1)
+}
+</code></pre>
+<h3>Enough of the platform</h3>
+<p>At this point I'll stop listing language features Elixir provides since this post is only meant for sweetening.
+I will also not try to persuade you that this is the right language to learn and use.
+Anyway, you should probably check some resources and dive a bit deeper into the awesome world of functional programming.
+A good place to start is <a href="http://elixir-lang.org/" target="blank">the official elixir-lang site</a>.
+Just click around and look at some beautiful code and examples.</p>
+<p>You think Elixir is not for you?
+Check out another functional language then!
+Take a look at <a href="https://www.scala-lang.org/" target="blank">Scala</a>, <a href="https://www.haskell.org/" target="blank">Haskell</a> or Erlang itself.
+I personally think your daily (programming) life will benefit from everything you learn, even if you do not actively use these languages for development.</p>
+<p><strong>Next up</strong>: The Phoenix web framework.
+See how it works and which concepts and tools it uses to keep your project bloat-free, how it makes your development faster and delivers responses within microseconds.</p>
+
+    </article>
+  </div>
+</div>
+
+    <div class="footer">
+      <ul class="nav-list">
+        <li class="nav-list-item nav-list-item-footer">
+          <i class="fab fa-twitter-square"></i>
+          <a target="blank" href="http://twitter.com/air2ick/">Twitter</a>
+        </li>
+        <li class="nav-list-item nav-list-item-footer">
+          <i class="fab fa-github-square"></i>
+          <a target="blank" href="http://github.com/erikmueller/">GitHub</a>
+        </li>
+        <li class="nav-list-item nav-list-item-footer">
+          <i class="fab fa-angellist"></i>
+          <a href="/cv.html">CV</a>
+        </li>
+        <li class="nav-list-item nav-list-item-footer">
+          <i class="fas fa-gavel"></i>
+          <a href="/legal.html">Legal notice</a>
+        </li>
+      </ul>
+    </div>
+
+    <script>
+      // Firefox doesn't seem to support the `onload` event on `link`
+      document.querySelector('head').insertAdjacentHTML('beforeend', '<link rel="stylesheet" href="styles/vendor-QUGRL6DO.css">')
+    </script>
+  </body>
+</html>
