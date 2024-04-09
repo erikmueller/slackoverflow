@@ -6,10 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>{{ title }}</title>
-    <meta name="author" content="Erik" />
-    <meta name="description" content="{{ meta_description }}" />
-    <link rel="canonical" href="https://slackoverflow.me{{ canonical }}" />
+    <meta name="author" content="Erik M&uuml;ller" />
+    <meta name="description" content="{{ intro }}" />
 
+    <link rel="canonical" href="https://slackoverflow.me{{ page.url }}" />
     <link rel="preload" href="{% static "vendor.css" %}" as="style" onload="this.rel='stylesheet'">
     <link rel="stylesheet" href="{% static 'style.css' %}">
 
@@ -39,8 +39,10 @@
           <img src="/assets/me.jpg" alt="Erik M&uuml;ller"/>
         </div>
 
-        <a href="/"><h2 class="blog-title">slack</h2></a>
-        <h3 class="blog-tagline">overflow</h3>
+        <a href="/">
+          <h2 class="blog-title">slack</h2>
+          <h3 class="blog-tagline">overflow</h3>
+        </a>
 
         <nav>
           <ul class="nav-list">
