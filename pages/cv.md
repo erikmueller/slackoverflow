@@ -32,16 +32,16 @@ I also love `node.js` bundled with `TypeScript` (when applicable) for the backen
 
 I also created <i class="fab fa-github"></i> and contributed <i class="fas fa-code-branch"></i> to several open source projects including:
 
-- <i class="fas fa-code-branch"></i> [eslint](https://github.com/eslint/eslint){:target="blank"} (pluggable tool for identifying and reporting on patterns in JavaScript)
-- <i class="fas fa-code-branch"></i> [react-stdio](https://github.com/mjackson/react-stdio){:target="blank"} (render React.js components on any backend)
-- <i class="fab fa-github"></i> [unexpected-immutable](https://github.com/erikmueller/unexpected-immutable){:target="blank"} (immutable.js assertions for unexpected.js)
-- <i class="fab fa-github"></i> [an-old-hype](https://github.com/erikmueller/an-old-hype){:target="blank"} (port of an atom syntax theme for hyper)
+- <i class="fas fa-code-branch"></i> [eslint](https://github.com/eslint/eslint){target="blank"} (pluggable tool for identifying and reporting on patterns in JavaScript)
+- <i class="fas fa-code-branch"></i> [react-stdio](https://github.com/mjackson/react-stdio){target="blank"} (render React.js components on any backend)
+- <i class="fab fa-github"></i> [unexpected-immutable](https://github.com/erikmueller/unexpected-immutable){target="blank"} (immutable.js assertions for unexpected.js)
+- <i class="fab fa-github"></i> [an-old-hype](https://github.com/erikmueller/an-old-hype){target="blank"} (port of an atom syntax theme for hyper)
 
 **Elixir**. Hobby alchemist for 2 years. Although still being a niche language Elixir helped me in becoming a better programmer and made me rethink established object oriented ways of thinking and programming patterns. A lot of the functional paradigms found in Elixir can be applied to the JavaScript language as well. I was part of the Hamburg.ex user group and created several side projects and playgrounds:
 
-- <i class="fab fa-github"></i> [Luke](https://github.com/erikmueller/luke){:target="blank"} (server-side rendered react-router with the cowboy webserver)
-- <i class="fab fa-github"></i> [JellyShot](https://github.com/erikmueller/jelly_shot){:target="blank"} (blog engine based on Phoenix powered by markdown)
-- <i class="fab fa-github"></i> [Edmin](https://github.com/erikmueller/edmin){:target="blank"} (image slider backed by ex_admin CRUD interface)
+- <i class="fab fa-github"></i> [Luke](https://github.com/erikmueller/luke){target="blank"} (server-side rendered react-router with the cowboy webserver)
+- <i class="fab fa-github"></i> [JellyShot](https://github.com/erikmueller/jelly_shot){target="blank"} (blog engine based on Phoenix powered by markdown)
+- <i class="fab fa-github"></i> [Edmin](https://github.com/erikmueller/edmin){target="blank"} (image slider backed by ex_admin CRUD interface)
 
 **HTML & CSS**. Besides efficient JavaScript I consider writing semantically correct markup and stylesheets the bread and butter of successful web development.
 

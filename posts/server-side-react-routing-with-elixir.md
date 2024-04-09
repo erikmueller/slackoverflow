@@ -36,7 +36,7 @@ So let's go to work, shall we?
 
 Before we can go and implement our shiny React app, we need someone to deliver the inital HTML page including the script tags.
 This will allow React to do its magic on the frontend.
-In the first step we will create a lean HTTP server using [Plug](https://github.com/elixir-plug/plug){:target="_blank"}, _a specification and conveniences for composable modules between web applications_.
+In the first step we will create a lean HTTP server using [Plug](https://github.com/elixir-plug/plug){target="blank"}, _a specification and conveniences for composable modules between web applications_.
 We want it to do the following things:
 
 * Deliver static assets to the frontend (e.g. a webpack js bundle).
@@ -130,16 +130,16 @@ Prepare for some awesomeness.
 
 ## JSON is your new best friend
 
-Michael Jackson (the react guy, not the pop guy) created a little project called [react-stdio](https://github.com/ReactTraining/react-stdio){:target="_blank"}.
+Michael Jackson (the react guy, not the pop guy) created a little project called [react-stdio](https://github.com/ReactTraining/react-stdio){target="blank"}.
 It lets you render react components by passing the path to the component together with a `props` object via STDIN, and get back the rendered output through STDOUT.
 This lets you use React with every language that can spawn processes and communicate through standard streams with a JSON protocol.
-Luckily, [Roman Chvanikov wrote a great article](https://medium.com/@chvanikoff/lets-refactor-std-json-io-e444b6f2c580){:target="_blank"} on the refactoring of [std_json_io](https://github.com/hassox/std_json_io){:target="_blank"}, a convenient library for communicating with an external script.
+Luckily, [Roman Chvanikov wrote a great article](https://medium.com/@chvanikoff/lets-refactor-std-json-io-e444b6f2c580){target="blank"} on the refactoring of [std_json_io](https://github.com/hassox/std_json_io){target="blank"}, a convenient library for communicating with an external script.
 Via JSON.
-This is no coincidence since `std_json_io` was [originally written for react-stdio](https://evalcode.com/render-react-with-phoenix/){:target="_blank"}.
+This is no coincidence since `std_json_io` was [originally written for react-stdio](https://evalcode.com/render-react-with-phoenix/){target="blank"}.
 
 While this was enough to render simple components it was a bit tricky to actually do routing.
 Besides returning the output stream you also have to somehow inform the server about the result of react-router's matching.
-After some fiddling around and a [PR](https://github.com/ReactTraining/react-stdio/pull/13/files){:target="_blank"} that Michael merged, react-stdio now also returns a `context` for exactly that (and other abuses).
+After some fiddling around and a [PR](https://github.com/ReactTraining/react-stdio/pull/13/files){target="blank"} that Michael merged, react-stdio now also returns a `context` for exactly that (and other abuses).
 
 Heading back to our Elixir implementation of the React router.
 
@@ -214,7 +214,7 @@ Here we're rendering our `react-router.js` entrypoint which uses the same `app` 
 `StdJsonIo` takes care of serialising and deserialising our JSON communication with `react-stdio`.
 We can then render our EEx template with the delivered render output, and set the response's status according to the react-router's matching result (via `context`).
 
-Besides having had a lot of fun experimenting there are some advantages over using a Node.js app. With the external renderer script we can prevent the whole server from crashing when rendering 3rd party generated content on the server (3rd party themes in our special case). But there’s more. I did a little (naive) benchmark with [wrk](https://github.com/wg/wrk){:target="_blank"}. Check the latency (render timings) for different numbers of open connections:
+Besides having had a lot of fun experimenting there are some advantages over using a Node.js app. With the external renderer script we can prevent the whole server from crashing when rendering 3rd party generated content on the server (3rd party themes in our special case). But there’s more. I did a little (naive) benchmark with [wrk](https://github.com/wg/wrk){target="blank"}. Check the latency (render timings) for different numbers of open connections:
 
 ![Plug beats node with increasing number of parallel connections](/assets/express-plug-react.jpg)
 
@@ -229,4 +229,4 @@ config :std_json_io,
 
 Together with all the nifty little things from the BEAM and the elixir/erlang ecosystem I’m sure there’s some interesting possibilities to explore.
 
-You can find the complete code on [Github](https://github.com/erikmueller/luke){:target="_blank"} together with links to all the resources mentioned here.
+You can find the complete code on [Github](https://github.com/erikmueller/luke){target="blank"} together with links to all the resources mentioned here.
