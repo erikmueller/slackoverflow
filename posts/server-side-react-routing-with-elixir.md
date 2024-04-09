@@ -3,7 +3,7 @@ title: "Server-side React Routing with Elixir"
 tags: post
 layout: post.liquid
 date: "2018-05-23"
-image: /assets/space.jpg
+image: assets/space.jpg
 intro: "Whether you love it or hate it, you can hardly ignore react and its ecosystem nowadays.
 React is (just) JavaScript (if you strip away JSX & friends) and not everyone has (or is willing to have) a JavaScript background. When you finally decide to build your frontend with React you still need some backend that is delivering the inital page. Let's say we want to create a more resilient backend and use Elixir as an example implementation. This leaves us with a couple of problems for our undertaking that need to be solved."
 categories: ["elixir", "javascript"]

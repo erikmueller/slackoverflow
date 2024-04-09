@@ -3,7 +3,7 @@ title: "Fullstack London - Of dragons, numbers and IoT"
 tags: post
 layout: post.liquid
 date: 2017-07-20
-image: /assets/dragon.jpg
+image: assets/dragon.jpg
 image_position: "top left"
 intro: "After one year of abscence I was attending Fullstack London again. The past years were well-organized, fun, and had an awesome speaker deck on top of that. This year was no difference. Here are some things I took away from these awesome three days."
 categories: ["javascript"]
