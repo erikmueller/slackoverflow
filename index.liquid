@@ -1,0 +1,37 @@
+---
+layout: layout.liquid
+---
+<div class="content">
+  <div class="content-sheet">
+    <div class="posts">
+      <h1 class="content-subhead">Recent posts</h1>
+
+      {% for post in collections.post %}      
+        <section class="post">
+          <header class="post-header">
+            <a href="{{ post.url }}">
+              <h2 class="post-title"> {{ post.data.title }}</h2>
+            </a>
+        
+            <p class="post-meta">
+              By
+              {% for author in post.data.authors %}
+                <a href="/posts?author={{ author }}">{{ author }}</a>
+              {% endfor %}
+        
+              in 
+              {% for category in post.data.categories %}
+                <a href="?/category={{ category }}" class="post-category post-category-{{ category }}">{{ category }}</a>
+              {% endfor %}
+            </p>
+          </header>
+        
+          <div class="post-description">
+            <p>{{ post.data.intro }}</p>
+          </div>
+        </section>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+  

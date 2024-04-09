@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+    <title>{{ title }}</title>
+    <meta name="author" content="Erik" />
+    <meta name="description" content="{{ meta_description }}" />
+    <link rel="canonical" href="https://slackoverflow.me{{ canonical }}" />
+
+    <!-- <%=
+      render_existing(@view_module, "meta." <> @view_template, assigns) ||
+      render(JellyShot.LayoutView, "meta.html", assigns)
+    %> -->
+
+    <link rel="preload" href="{% static "vendor.css" %}" as="style" onload="this.rel='stylesheet'">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+
+    <style>
+      /* critical desktop overwrites */
+      @media (min-width: 920px) {
+        .nav-list-item { display: block; line-height: 1.5em; }
+        .nav-list-item:before { content: none !important; }
+        .nav-list-item-footer a { color: gray; }
+        .blog-avatar { float: none; margin: 0 0 1em 0; }
+        .blog-avatar img { height: 180px; border-radius: 50px 0 0 50px; }
+        .content { margin-left: 15em; }
+        .content-sheet { padding: 3em; max-width: 1024px; }
+        .header { margin: 12em 1em 0; text-align: right; }
+        .sidebar { position: fixed; top: 0; bottom: 0; width: 212px; }
+        .footer { background: none; text-align: left; margin-left: 12em; padding-left: 5em; }
+      }
+    </style>
+
+    {% comment %} <script defer src="/js/bundle.js"></script> {% endcomment %}
+  </head>
+
+  <body>
+    <div class="sidebar">
+      <div class="header">
+        <div class="blog-avatar">
+          <img src="/assets/me.jpg" alt="Erik M&uuml;ller"/>
+        </div>
+
+        <a href="/"><h2 class="blog-title">slack</h2></a>
+        <h3 class="blog-tagline">overflow</h3>
+
+        <nav>
+          <ul class="nav-list">
+            {% for topic in topics  %}
+              <li class="nav-list-item nav-list-item-category">
+                <a href="/?topic={{ topic }}">{{ topic }}</a>
+              </li>
+            {% endfor %}
+          </ul>
+        </nav>
+      </div>
+    </div>
+
+    {{ content }}
+
+    <div class="footer">
+      <ul class="nav-list">
+        <li class="nav-list-item nav-list-item-footer">
+          <i class="fab fa-twitter-square"></i>
+          <a target="_blank" href="http://twitter.com/air2ick/">Twitter</a>
+        </li>
+        <li class="nav-list-item nav-list-item-footer">
+          <i class="fab fa-github-square"></i>
+          <a target="_blank" href="http://github.com/erikmueller/">GitHub</a>
+        </li>
+        <li class="nav-list-item nav-list-item-footer">
+          <i class="fab fa-angellist"></i>
+          <a href="/pages/cv">CV</a>
+        </li>
+        <li class="nav-list-item nav-list-item-footer">
+          <i class="fas fa-gavel"></i>
+          <a href="/pages/legal">Legal notice</a>
+        </li>
+      </ul>
+    </div>
+
+    <script>
+      // Firefox doesn't seem to support the `onload` event on `link`
+      document.querySelector('head').insertAdjacentHTML('beforeend', '<link rel="stylesheet" href="{% static "vendor.css" %}">')
+    </script>
+  </body>
+</html>

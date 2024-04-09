@@ -1,0 +1,41 @@
+@slight-gray: #999;
+
+.cv {
+  h1 {
+    color: @slight-gray;
+    text-align: center;
+    font-size: 2em;
+    font-weight: 200;
+  }
+
+  h2 {
+    color: #397249;
+
+    &:before {
+      content: '';
+      display: inline-block;
+      margin-right: 8px;
+      width: 100px;
+      height: 10px;
+      background-color: #9cb770;
+    }
+  }
+
+  table {
+    th {
+      display: none;
+    }
+
+    td {
+      min-width: 106px;
+      font-weight: 400;
+      vertical-align: baseline;
+      line-height: 2em;
+
+      &:first-of-type {
+        padding-right: 1em;
+        color: @slight-gray;
+      }
+    }
+  }
+}
