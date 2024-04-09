@@ -24,11 +24,7 @@ const getTopics = () => {
 }
   
 module.exports = eleventyConfig => {
-  const markdownLib = markdownIt({
-    html: true,
-    breaks: true,
-    linkify: true,
-  }).use(markdownItAttrs)
+  const markdownLib = markdownIt({ html: true }).use(markdownItAttrs)
     
   eleventyConfig.setLibrary("md", markdownLib);
   eleventyConfig.addLiquidShortcode("static", webpackAsset);
