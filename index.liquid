@@ -18,12 +18,12 @@ intro: This is a blog about coding, other things I do in my freetime and everyth
             <p class="post-meta">
               By
               {% for author in post.data.authors %}
-                <a href="?author={{ author }}">{{ author }}</a>
+                <a href="#{{ author }}">{{ author }}</a>
               {% endfor %}
         
               in 
               {% for category in post.data.categories %}
-                <a href="?category={{ category }}" class="post-category post-category-{{ category }}">{{ category }}</a>
+                <a href="#{{ category }}" class="post-category post-category-{{ category }}">{{ category }}</a>
               {% endfor %}
             </p>
           </header>

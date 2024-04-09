@@ -39,7 +39,7 @@
           <img src="assets/me.jpg" alt="Erik M&uuml;ller"/>
         </div>
 
-        <a href="/">
+        <a href="../">
           <h2 class="blog-title">slack</h2>
           <h3 class="blog-tagline">overflow</h3>
         </a>
@@ -48,7 +48,7 @@
           <ul class="nav-list">
             {% for topic in topics  %}
               <li class="nav-list-item nav-list-item-category">
-                <a href="/?topic={{ topic }}">{{ topic }}</a>
+                <a href="#{{ topic }}">{{ topic }}</a>
               </li>
             {% endfor %}
           </ul>
