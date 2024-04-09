@@ -11,19 +11,19 @@ intro: This is a blog about coding, other things I do in my freetime and everyth
       {% for post in collections.post %}      
         <section class="post">
           <header class="post-header">
-            <a href="{{ post.url }}">
+            <a href="{{ post.fileSlug }}.html">
               <h2 class="post-title"> {{ post.data.title }}</h2>
             </a>
         
             <p class="post-meta">
               By
               {% for author in post.data.authors %}
-                <a href="/posts?author={{ author }}">{{ author }}</a>
+                <a href="?author={{ author }}">{{ author }}</a>
               {% endfor %}
         
               in 
               {% for category in post.data.categories %}
-                <a href="?/category={{ category }}" class="post-category post-category-{{ category }}">{{ category }}</a>
+                <a href="?category={{ category }}" class="post-category post-category-{{ category }}">{{ category }}</a>
               {% endfor %}
             </p>
           </header>
