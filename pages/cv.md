@@ -34,6 +34,7 @@ I also created <i class="fab fa-github"></i> and contributed <i class="fas fa-co
 
 - <i class="fas fa-code-branch"></i> [eslint](https://github.com/eslint/eslint){target="blank"} (pluggable tool for identifying and reporting on patterns in JavaScript)
 - <i class="fas fa-code-branch"></i> [react-stdio](https://github.com/mjackson/react-stdio){target="blank"} (render React.js components on any backend)
+- <i class="fab fa-github"></i> [cond-flow](https://github.com/erikmueller/cond-flow){target="blank"} (Inspired by Elixir's cond for functional data flow)
 - <i class="fab fa-github"></i> [unexpected-immutable](https://github.com/erikmueller/unexpected-immutable){target="blank"} (immutable.js assertions for unexpected.js)
 - <i class="fab fa-github"></i> [an-old-hype](https://github.com/erikmueller/an-old-hype){target="blank"} (port of an atom syntax theme for hyper)
 
@@ -53,6 +54,8 @@ I also created <i class="fab fa-github"></i> and contributed <i class="fas fa-co
 
 | When?        | What                                                                                  |
 | ------------ | ------------------------------------------------------------------------------------- |
+| 2021 - \*    | **Senior Software Enngineer**, Fullstack, NewStore GmbH, Berlin                       |
+| 2018 - 2021  | **Software Enngineer**, Mobile Development, NewStore GmbH, Berlin                     |
 | 2014 – 2018  | **JavaScript Engineer**, ePages GmbH, Hamburg                                         |
 |              | - Part of a cross-functional fullstack team                                           |
 |              | - From scratch rewrite of an ecommerce frontend with `react` & `redux`                |
