@@ -1,12 +1,12 @@
 ---
-title: "The Phoenix Framework: Programming beyond the comfort zone"
+title: 'The Phoenix Framework: Programming beyond the comfort zone'
 tags: post
 layout: post.liquid
-date: "2017-02-10"
+date: '2017-02-10'
 image: assets/fire.jpg
-intro: "In the last post we checked why you should learn some more languages and why Elixir might help you becoming a better JavaScript developer. Now I promised to go deeper into web development. A popular (if not the most popular) web framework for Elixir is Phoenix."
-categories: ["elixir"]
-authors: ["Erik"]
+intro: 'In the last post we checked why you should learn some more languages and why Elixir might help you becoming a better JavaScript developer. Now I promised to go deeper into web development. A popular (if not the most popular) web framework for Elixir is Phoenix.'
+categories: ['elixir']
+authors: ['Erik']
 ---
 
 In the [last post](https://developer.epages.com/blog/2017/02/02/programming-beyond-the-comfort-zone-javascript-elixir.html) we checked why you should learn some more languages and why Elixir might help you becoming a better JavaScript developer.
@@ -23,9 +23,9 @@ Now it's not only used for dynamic websites and applications but especially adve
 
 Phoenix is heavily relying on three (Elixir and/or Erlang) projects:
 
-1.  The HTTP server [Cowboy](https://github.com/ninenines/cowboy)
-2.  [Plug](https://github.com/elixir-lang/plug) - a specification for composable modules used in web application
-3.  The database wrapper [Ecto](https://github.com/elixir-ecto/ecto) which also provides a DSL for querying.
+1. The HTTP server [Cowboy](https://github.com/ninenines/cowboy)
+2. [Plug](https://github.com/elixir-lang/plug) - a specification for composable modules used in web application
+3. The database wrapper [Ecto](https://github.com/elixir-ecto/ecto) which also provides a DSL for querying.
 
 Since Phoenix is built in a very modular way you can add and remove pretty much any functionality you need.
 Writing a REST API that only provides JSON data?
@@ -242,4 +242,3 @@ I hope these posts made you curious and showed you some things beyond the JavaSc
 [Let me know](https://twitter.com/epagesdevs?lang=de) what you think.
 
 Thanks for reading.
-

@@ -1,13 +1,13 @@
 ---
-title: "Fullstack London - Of dragons, numbers and IoT"
+title: 'Fullstack London - Of dragons, numbers and IoT'
 tags: post
 layout: post.liquid
-date: 2017-07-20
+date: '2017-07-20'
 image: assets/dragon.jpg
-image_position: "top left"
-intro: "After one year of abscence I was attending Fullstack London again. The past years were well-organized, fun, and had an awesome speaker deck on top of that. This year was no difference. Here are some things I took away from these awesome three days."
-categories: ["javascript"]
-authors: ["Erik"]
+image_position: 'top left'
+intro: 'After one year of abscence I was attending Fullstack London again. The past years were well-organized, fun, and had an awesome speaker deck on top of that. This year was no difference. Here are some things I took away from these awesome three days.'
+categories: ['javascript']
+authors: ['Erik']
 ---
 
 After one year of abscence I was attending [Fullstack](https://skillsmatter.com/conferences/8264-fullstack-2017-the-conference-on-javascript-node-and-internet-of-things){target="blank"} London again. The past years were well-organized, fun, and had an awesome speaker deck on top of that.
@@ -20,7 +20,7 @@ Here are some things I took away from these awesome three days.
 The opening keynote was held by [Douglas Crockford](https://github.com/douglascrockford){target="blank"} (the father of JSON) himself.
 While talking about numbers and their history he came up with [DEC64](http://dec64.com/){target="blank"}, a new number type that fixes truncation and overflow problems (besides others) originated in the fifties.
 The session was not only informative but also very humorous as Crockford is often very opinionated and does not try to hide that at all.
-On top of that, [Skills Matter](https://skillsmatter.com){target="blank"} gave away (among other things to choose from) Crockfords \_The Good Parts_ book which he signed during the conference.
+On top of that, [Skills Matter](https://skillsmatter.com){target="blank"} gave away (among other things to choose from) Crockfords \_The Good Parts\_ book which he signed during the conference.
 
 Later that day [Amie D. Dansby](https://twitter.com/amiedoubleD){target="blank"}, an Iot enthusiast and maker (with an RFID chip in her hand and a remarkable resemblance to NCIS' Abby), gave an inspiring talk about releasing your inner maker.
 IMHO her slides where a bit overloaded but her spirit and message as well as the content (maybe because of the massive content) totally made up for that!
@@ -40,7 +40,7 @@ As hard as it was I managed to single out some interesting sessions since I knew
 Thanks to [@thekwasti](https://twitter.com/thekwasti){target="blank"} I recently started writing some TypeScript (or rather screwing with the TS he wrote).
 I also know decorators (for the spec has been deprecated and was still not reintroduced).
 
-[Damjan Vujnovic](https://twitter.com/returnthis){target="blank"} was (accidentally) picking up Crockford's \_numbers_ theme while doing his (vivid) introduction.
+[Damjan Vujnovic](https://twitter.com/returnthis){target="blank"} was (accidentally) picking up Crockford's \_numbers\_ theme while doing his (vivid) introduction.
 Decorators are an excellent way to let all of your functions be responsible for a single purpose and "inject" every other (reusable) behavior, such as logging or measuring.
 This insight does not only apply to TypeScript but can also be used when decorators come (back) to the JavaScript language since they are basically sugar for higher-order functions.
 

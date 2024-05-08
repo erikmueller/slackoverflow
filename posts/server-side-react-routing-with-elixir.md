@@ -25,9 +25,9 @@ Moreover, the NPM ecosystem hasn't had the best reputation recently.
 Let's say we want to create a more resilient backend and use Elixir as an example implementation.
 This leaves us with a couple of challenges for our undertaking to be solved.
 
-* Have one place to define our routes used by client and server.
-* Render our react components on client and server.
-* Use something else than Node.js on the backend (also because it would be too easy otherwise).
+- Have one place to define our routes used by client and server.
+- Render our react components on client and server.
+- Use something else than Node.js on the backend (also because it would be too easy otherwise).
 
 There's some stuff to do.
 So let's go to work, shall we?
@@ -39,9 +39,9 @@ This will allow React to do its magic on the frontend.
 In the first step we will create a lean HTTP server using [Plug](https://github.com/elixir-plug/plug){target="blank"}, _a specification and conveniences for composable modules between web applications_.
 We want it to do the following things:
 
-* Deliver static assets to the frontend (e.g. a webpack js bundle).
-* Render a static html template with a script tag loading the bundle.
-* Bonus: Split requests between view rendering and API (for demonstration and for later).
+- Deliver static assets to the frontend (e.g. a webpack js bundle).
+- Render a static html template with a script tag loading the bundle.
+- Bonus: Split requests between view rendering and API (for demonstration and for later).
 
 ```elixir
 defmodule My.Router do
@@ -225,7 +225,7 @@ config :std_json_io,
   pool_size: 2,
   pool_max_overflow: 4,
   script: "node_modules/.bin/react-stdio"
-``` 
+```
 
 Together with all the nifty little things from the BEAM and the elixir/erlang ecosystem I’m sure there’s some interesting possibilities to explore.
 

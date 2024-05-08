@@ -1,13 +1,13 @@
 ---
-title: "JavaScript |> Elixir: Programming beyond the comfort zone"
+title: 'JavaScript |> Elixir: Programming beyond the comfort zone'
 tags: post
 layout: post.liquid
-date: "2017-02-09"
+date: '2017-02-09'
 image: assets/water.jpg
-image_position: "bottom"
-intro: "I’m a JavaScript Engineer. I write JavaScript. I really like writing JavaScript and I feel very comfortable doing so. In the JavaScript world, there are a gazillion web frameworks available and every week there are more coming. So why should you start programming in another language?"
-categories: ["elixir", "javascript"]
-authors: ["Erik"]
+image_position: 'bottom'
+intro: 'I’m a JavaScript Engineer. I write JavaScript. I really like writing JavaScript and I feel very comfortable doing so. In the JavaScript world, there are a gazillion web frameworks available and every week there are more coming. So why should you start programming in another language?'
+categories: ['elixir', 'javascript']
+authors: ['Erik']
 ---
 
 I'm a JavaScript Engineer.
@@ -43,7 +43,7 @@ Before we explore some Elixir code, let's start with a naive JS example of popul
 const myNumbers = [-2, 3, 5, -34, 0, 32]
 const result = []
 
-myNumbers.forEach(num => {
+myNumbers.forEach((num) => {
   if (num > 0) {
     result.push(num * 2)
   }
@@ -56,7 +56,7 @@ Of course we can do better:
 
 ```js
 const myNumbers = [-2, 3, 5, -34, 0, 32]
-const result = myNumbers.filter(num => num > 0).map(num => num * 2)
+const result = myNumbers.filter((num) => num > 0).map((num) => num * 2)
 ```
 
 This time we see that `result` will contain the double of all positive numbers from the source array.
