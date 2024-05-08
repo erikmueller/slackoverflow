@@ -36,7 +36,7 @@
     <div class="sidebar">
       <div class="header">
         <div class="blog-avatar">
-          <img src="assets/me.jpg" alt="Erik M&uuml;ller"/>
+          <img src="assets/me2.jpg" alt="Erik M&uuml;ller"/>
         </div>
 
         <a href="../">
@@ -89,7 +89,7 @@ This first part will take a look at how <strong>Elixir</strong> might help you t
 <pre><code class="language-js">const myNumbers = [-2, 3, 5, -34, 0, 32]
 const result = []
 
-myNumbers.forEach(num =&gt; {
+myNumbers.forEach((num) =&gt; {
   if (num &gt; 0) {
     result.push(num * 2)
   }
@@ -98,7 +98,7 @@ myNumbers.forEach(num =&gt; {
 <p>So what do we have here? Side effects and mutation! With each iteration we're changing the <code>result</code> array. In this simple case we're pretty sure that we know what it contains after we touched each number. With higher complexity (and nesting) we might be guessing the values rather than knowing them. Furthermore it's not quite obvious at first sight how <code>result</code> is populated (because there's no assignment we can see right away).</p>
 <p>Of course we can do better:</p>
 <pre><code class="language-js">const myNumbers = [-2, 3, 5, -34, 0, 32]
-const result = myNumbers.filter(num =&gt; num &gt; 0).map(num =&gt; num * 2)
+const result = myNumbers.filter((num) =&gt; num &gt; 0).map((num) =&gt; num * 2)
 </code></pre>
 <p>This time we see that <code>result</code> will contain the double of all positive numbers from the source array.
 Way more explicit, isn't it?
