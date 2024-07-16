@@ -14,7 +14,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      
+
       - name: Enable corepack
         run: corepack enable
 
@@ -23,7 +23,6 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'yarn'
-
 
       - name: Install packages
         run: yarn
@@ -36,3 +35,4 @@ jobs:
         with:
           deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
           publish_dir: _site
+          cname: slackoverflow.me

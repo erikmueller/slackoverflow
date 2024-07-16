@@ -28,7 +28,7 @@ module.exports = (eleventyConfig) => {
 
   fs.mkdirSync('_site/.well-known')
   fs.writeFileSync(
-    '_site/.well-known/apple-app-site-association.json',
+    '_site/.well-known/apple-app-site-association',
     JSON.stringify({
       applinks: {
         details: [
