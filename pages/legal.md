@@ -6,9 +6,9 @@ layout: page.liquid
 
 <address>
   Erik Müller<br />
-  22083 Hamburg, Germany<br />
+  15745 Wildau, Germany<br />
   slackoverflow.me</br>
-  <span class="baffle">moc {tod} lia<i>llun</i>mg {ta} liam {tod} relleum {tod} e</span>
+  e{dot}mueller{dot}mail{at}gmail{dot}com
 </address>
 
 Exact address is provided upon request.

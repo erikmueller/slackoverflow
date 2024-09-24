@@ -8,12 +8,12 @@ layout: page.liquid
 
 ## Personal data
 
-| What?  | Where                                           |
-| ------ | ----------------------------------------------- |
-| build. | [@erikmueller](https://github.com/erikmueller)  |
-| share. | [@slackoverflow](https://slackoverflow.me)      |
-| think. | [@Air2ick](https://twitter.com/Air2ick)         |
-| E-Mail | e {dot} mueller {dot} mail {at} gmail {dot} com |
+| What?  | Where                                          |
+| ------ | ---------------------------------------------- |
+| build. | [@erikmueller](https://github.com/erikmueller) |
+| share. | [@slackoverflow](https://slackoverflow.me)     |
+| think. | [@Air2ick](https://twitter.com/Air2ick)        |
+| E-Mail | e{dot}mueller{dot}mail{at}gmail{dot}com        |
 
 I ❤️ functional, declarative and clean programming and its powerful abstractions like pure functions and immutable data.
 It makes programs easier to read and reason about. It also reduces cognitive load and brings the bug count down.
