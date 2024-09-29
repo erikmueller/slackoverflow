@@ -13,7 +13,7 @@ layout: page.liquid
 | build. | [@erikmueller](https://github.com/erikmueller) |
 | share. | [@slackoverflow](https://slackoverflow.me)     |
 | think. | [@Air2ick](https://twitter.com/Air2ick)        |
-| mail.  | e{dot}mueller{dot}mail{at}gmail{dot}com        |
+| mail.  | e.mueller.mail[at]gmail.com                    |
 
 I ❤️ functional, declarative and clean programming and its powerful abstractions like pure functions and immutable data.
 It makes programs easier to read and reason about. It also reduces cognitive load and brings the bug count down.

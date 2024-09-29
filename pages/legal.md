@@ -8,7 +8,7 @@ layout: page.liquid
   Erik Müller<br />
   15745 Wildau, Germany<br />
   slackoverflow.me</br>
-  e{dot}mueller{dot}mail{at}gmail{dot}com
+  e.mueller.mail[at]gmail.com
 </address>
 
 Exact address is provided upon request.

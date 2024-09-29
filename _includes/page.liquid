@@ -29,6 +29,10 @@ permalink: "/{{ page.fileSlug }}.html"
   .content .legal { text-align: left; }
 
   @media print { .sidebar, .footer { display: none; } }
+  @media(max-width: 429px) {  
+    .cv h2:before { width: 50px; }
+    .cv table td { display: table-row; }
+  }
 </style>
 
 <div class="content">
